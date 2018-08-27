@@ -12,8 +12,13 @@
             <p>{{greeter.greet}}</p>
           </div>
         <div class="twelve columns" id="errors">
-            <p>{{greeting}}</p>
+            <p></p>
           </div>
+        </div>
+        <div class="row">
+        <div class="six columns" id="checker"></div>
+          Counter: <span id="count">{{greeter.count}}</span>
+        </div>
         </div>
         <hr>
         <div class="row">
@@ -42,9 +47,6 @@
       </form>
         <form action="/reset" method="POST">
         <div class="row">
-            <div class="six columns" id="checker"></div>
-          Counter: <span id="count">0</span>
-        </div>
         <div class="row">
             <div class="six columns">
                 <button class="reset" type="button" name="bttn">Reset</button>

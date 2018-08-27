@@ -7,11 +7,15 @@ const bodyParser = require('body-parser');
 const greetings = require('./greetingsFactory.js');
 let greetingsInstance = greetings();
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
@@ -21,23 +25,19 @@ app.get('/', function (req, res) {
 app.post('/greetings', function (req, res) {
     let name = req.body.names;
     let lang = req.body.language;
+
     let greeter = {
-        greet: greetingsInstance.greeting(name, lang)
+        greet: greetingsInstance.greeting(name, lang),
+        count: greetingsInstance.counter()
     }
-    res.render('home', function(){
+    console.log(greeter);
+    res.render('home', {
         greeter
     });
 });
 
-app.get('/greetings', function(req, res){
-    res.render('home', {
-        greeting: greetingsInstance.greeting(name. lang)
-    });
-});
-
-app.post('/', function(){
-
-    res.render('home', function(){
+app.post('/', function () {
+    res.render('home', function () {
 
     });
 });
