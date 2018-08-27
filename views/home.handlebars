@@ -1,0 +1,55 @@
+
+  <div class="container">
+    <div class="row">
+      <div class="six columns">
+          <form action="/greetings" method="POST">
+        <h2>Greetings</h2>
+          Name <input class="insert" id="NameSearch" type='text' name="names" value="" placeholder="enter name"
+          onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+  </div>
+        <div class="row">
+          <div class="twelve columns" id="screenPrint">
+            <p>{{greeter.greet}}</p>
+          </div>
+        <div class="twelve columns" id="errors">
+            <p>{{greeting}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="three columns">
+          <label class="inline1">
+            <input type="radio" name="language" value="English">
+            <span class="eng">English</span><br>
+          </label>
+        </div>
+        <div class="three columns">
+          <label class="inline2">
+            <input type="radio" name="language" value="isiXhosa">
+            <span class="xosa">isiXhosa</span><br>
+          </label>
+        </div>
+        <div class="three columns">
+          <label class="inline3">
+            <input type="radio" name="language" value="Afrikaans">
+            <span class="arfik">Afrikaans</span><br>
+          </label>
+        </div>
+      </div>
+       <div class="twelve columns">
+        <button id="btn" type="submit" name="">Greet</button>
+    </div>
+      </form>
+        <form action="/reset" method="POST">
+        <div class="row">
+            <div class="six columns" id="checker"></div>
+          Counter: <span id="count">0</span>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <button class="reset" type="button" name="bttn">Reset</button>
+            </div>
+        </div>
+      </div>
+      </form>
+    </div>
