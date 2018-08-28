@@ -11,9 +11,11 @@
           <div class="twelve columns" id="screenPrint">
             <p>{{greeter.greet}}</p>
           </div>
+          {{#if messages.info}}
         <div class="twelve columns" id="errors">
-            <p></p>
+            <p>{{messages.info}}</p>
           </div>
+          {{/if}}
         </div>
         <div class="row">
         <div class="six columns" id="checker"></div>
