@@ -6,12 +6,7 @@
   margin-bottom: 1em;
 }
 
-.warning {
-  color: orange;
-  font-weight: bold;
-}
-
-.danger {
+#errors {
   color: crimson;
   font-weight: bold;
 }

@@ -36,6 +36,11 @@ app.post('/greetings', function (req, res) {
     let name = req.body.names;
     let lang = req.body.language;
 
+    let greeter = {
+        greet: greetingsInstance.greeting(name, lang),
+        count: greetingsInstance.counter()
+    }
+
     if (name === "" || name === undefined){
         req.flash('info',  'Please enter a name')
     } else if (lang === undefined){
@@ -43,12 +48,7 @@ app.post('/greetings', function (req, res) {
     } else {
         greetingsInstance.greeting(name, lang);
     }
-
-    let greeter = {
-        greet: greetingsInstance.greeting(name, lang),
-        count: greetingsInstance.counter()
-    }
-    console.log(greeter);
+    
     res.render('home', {
         greeter
     });

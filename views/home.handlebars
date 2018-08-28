@@ -7,23 +7,8 @@
           Name <input class="insert" id="NameSearch" type='text' name="names" value="" placeholder="enter name"
           onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
   </div>
-        <div class="row">
-          <div class="twelve columns" id="screenPrint">
-            <p>{{greeter.greet}}</p>
-          </div>
-          {{#if messages.info}}
-        <div class="twelve columns" id="errors">
-            <p>{{messages.info}}</p>
-          </div>
-          {{/if}}
-        </div>
-        <div class="row">
-        <div class="six columns" id="checker"></div>
-          Counter: <span id="count">{{greeter.count}}</span>
-        </div>
-        </div>
-        <hr>
-        <div class="row">
+  <div class="twelve columns">
+          <div class="row">
           <div class="three columns">
           <label class="inline1">
             <input type="radio" name="language" value="English">
@@ -43,6 +28,24 @@
           </label>
         </div>
       </div>
+      </div>
+        <div class="row">
+          <div class="twelve columns" id="screenPrint">
+            <p>{{greeter.greet}}</p>
+          </div>
+          {{#if messages.info}}
+        <div class="twelve columns" id="errors">
+            <p>{{messages.info}}</p>
+          </div>
+          {{/if}}
+        </div>
+        <div class="row">
+        <div class="six columns" id="checker"></div>
+          Counter: <span id="count">{{greeter.count}}</span>
+        </div>
+        </div>
+        <hr>
+
        <div class="twelve columns">
         <button id="btn" type="submit" name="">Greet</button>
     </div>
