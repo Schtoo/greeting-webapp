@@ -10,18 +10,18 @@ module.exports = function (stored) {
            return name;
         }
       
-        function greeting(name, lang) {
-          if(name !=='' && lang!==undefined){
-            giveName(name);
+        function greeting(Name, lang) {
+          Name = Name.charAt(0).toUpperCase() + Name.slice(1);
+          if(Name !=='' && lang!==undefined){
+            giveName(Name);
             if (lang === "English") {
-              return "Hello " + name;
+              return "Hello " + Name;
             } else if (lang === "isiXhosa") {
-              return "Molo " + name;
+              return "Molo " + Name;
             } else if (lang === "Afrikaans") {
-              return "Hallo " + name;
+              return "Hallo " + Name;
             }
           }
-         
         }
       
         function counter() {

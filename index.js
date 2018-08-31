@@ -9,6 +9,23 @@ const flash = require('express-flash');
 const session = require('express-session');
 let greetingsInstance = greetings();
 
+const pg = require("pg");
+const Pool = pg.Pool;
+
+// should we use a SSL connection
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local){
+    useSSL = true;
+}
+// which db connection to use
+const connectionString = process.env.DATABASE_URL || 'coder:pg123@postgresql://localhost:5432/cat_spotter';
+
+const pool = new Pool({
+    connectionString,
+    ssl : useSSL
+  });
+
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
@@ -48,11 +65,21 @@ app.post('/greetings', function (req, res) {
     } else {
         greetingsInstance.greeting(name, lang);
     }
-    
     res.render('home', {
         greeter
     });
 });
+
+// app.post('/reset', function (req, res){
+//     let reset = {
+//         set: greetingsInstance.reset()
+//     }
+//     res.render('home', {
+//         reset
+//     });
+// });
+
+
 
 app.post('/', function () {
     res.render('home', function () {

@@ -6,6 +6,11 @@
   margin-bottom: 1em;
 }
 
+#NameSearch {
+  text-transform: capitalize;
+  color: rgb(0, 0, 0);
+}
+
 #errors {
   color: crimson;
   font-weight: bold;
