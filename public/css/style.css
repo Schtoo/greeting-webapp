@@ -19,3 +19,7 @@
   color: #FFF;
   background-color: #33C3F0;
 }
+#screenPrint {
+  color: rgb(20, 220, 47);
+  font-weight: bold;
+}
