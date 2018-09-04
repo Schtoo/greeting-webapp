@@ -62,28 +62,23 @@ app.post('/greetings', function (req, res) {
         req.flash('info',  'Please enter a name')
     } else if (lang === undefined){
         req.flash('info', 'Please select language')
-    } else {
-        greetingsInstance.greeting(name, lang);
-    }
+     }
+     
     res.render('home', {
         greeter
     });
 });
 
-// app.post('/reset', function (req, res){
-//     let reset = {
-//         set: greetingsInstance.reset()
-//     }
-//     res.render('home', {
-//         reset
-//     });
-// });
-
-
+app.post('/reset', function (req, res){
+    let resetBtn = greetingsInstance.resetBttn();
+    
+    res.render('home', {
+        resetBtn
+    });
+});
 
 app.post('/', function () {
     res.render('home', function () {
-
     });
 });
 
