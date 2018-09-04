@@ -1,5 +1,12 @@
 module.exports = function (stored) {
         var names = stored || {};
+
+        function resetBttn (){
+          names = {};
+          counter = 0;
+          lang = '';
+          Name = '';
+        }
       
         function giveName(name) {
           if (name) {
@@ -34,6 +41,7 @@ module.exports = function (stored) {
         return {
           greeting,
           counter,
-          getMap
+          getMap,
+          resetBttn
         }
 }
