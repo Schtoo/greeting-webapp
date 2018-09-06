@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const greetings = require('./greetingsFactory.js');
 const flash = require('express-flash');
 const session = require('express-session');
-let greetingsInstance = greetings();
 
 const pg = require("pg");
 const Pool = pg.Pool;
@@ -19,16 +18,20 @@ if (process.env.DATABASE_URL && !local){
     useSSL = true;
 }
 // which db connection to use
-const connectionString = process.env.DATABASE_URL || 'coder:pg123@postgresql://localhost:5432/cat_spotter';
+const connectionString = process.env.DATABASE_URL || 'postgres://coder:pg123@localhost:5432/greeted_users';
 
 const pool = new Pool({
     connectionString,
     ssl : useSSL
   });
 
+// creating instance of factory function
+let greetingsInstance = greetings(pool);
+
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
+
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
@@ -45,20 +48,28 @@ app.use(session({
 
   app.use(flash());
 
-app.get('/', function (req, res) {
-    res.render('home')
-})
+app.get('/', async function (req, res) {
+    let greeter = {
+        counta: await greetingsInstance.counter(),
+    }
+    let resetBtn = await greetingsInstance.resetBttn();
+    
+    res.render('home',{
+        greeter,
+       resetBtn
+    });
+});
 
-app.post('/greetings', function (req, res) {
+app.post('/greetings', async function (req, res) {
     let name = req.body.names;
     let lang = req.body.language;
 
     let greeter = {
-        greet: greetingsInstance.greeting(name, lang),
-        count: greetingsInstance.counter()
+        greet: await greetingsInstance.greeting(name, lang),
+        counta: await greetingsInstance.counter()
     }
-
     if (name === "" || name === undefined){
+        
         req.flash('info',  'Please enter a name')
     } else if (lang === undefined){
         req.flash('info', 'Please select language')
@@ -69,24 +80,24 @@ app.post('/greetings', function (req, res) {
     });
 });
 
-app.post('/reset', function (req, res){
-    let resetBtn = greetingsInstance.resetBttn();
-    
-    res.render('home', {
-        resetBtn
+app.post('/clear', async function (req, res){
+    resetBtn = await greetingsInstance.resetBttn();
+    res.redirect('/');
+});
+
+app.post('/greeted', async function (req, res) {
+    let users = await greetingsInstance.user();
+    res.render('users', {
+        users
     });
 });
 
-app.post('/', function () {
-    res.render('home', function () {
+app.post('/', async function (req, res){
+    res.redirect('/', {
     });
 });
 
-app.get('/', function (req, res) {
-    res.render('home')
-})
-
-let PORT = process.env.PORT || 3015;
+let PORT = process.env.PORT || 3016;
 
 app.listen(PORT, function () {
     console.log('App successfully starting on port', PORT);
