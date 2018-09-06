@@ -52,11 +52,8 @@ app.get('/', async function (req, res) {
     let greeter = {
         counta: await greetingsInstance.counter(),
     }
-    let resetBtn = await greetingsInstance.resetBttn();
-    
     res.render('home',{
-        greeter,
-       resetBtn
+        greeter
     });
 });
 
@@ -81,7 +78,7 @@ app.post('/greetings', async function (req, res) {
 });
 
 app.post('/clear', async function (req, res){
-    resetBtn = await greetingsInstance.resetBttn();
+    let resetBtn = await greetingsInstance.resetBttn();
     res.redirect('/');
 });
 
@@ -97,7 +94,7 @@ app.post('/', async function (req, res){
     });
 });
 
-let PORT = process.env.PORT || 3015;
+let PORT = process.env.PORT || 3010;
 
 app.listen(PORT, function () {
     console.log('App successfully starting on port', PORT);
