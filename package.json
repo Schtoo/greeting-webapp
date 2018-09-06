@@ -1,7 +1,6 @@
 {
   "name": "greeting-expressjs",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,5 +16,18 @@
     "express-session": "^1.15.6",
     "pg": "^7.4.3",
     "pg-pool": "^2.0.3"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Schtoo/greeting-webapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Schtoo/greeting-webapp/issues"
+  },
+  "homepage": "https://github.com/Schtoo/greeting-webapp#readme",
+  "description": ""
 }

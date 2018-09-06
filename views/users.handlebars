@@ -1,13 +1,17 @@
 <h2>Greeted Users</h2>
-
+  <form action="/" method="get">
+    <button>home</button>
+ </form>
 <table>
     <tr>
-        <th></th>
-        <th></th>
-    </tr>
+        <th>Names greeted</th>
+        <th>Times greeted</th>
+    </tr
+    {{#each users}}>
     <tr>
         <td>{{names}}</td>
-        <td>{{}}</td>
+        <td>{{count}}</td>
     </tr>
-
+    {{/each}}
 </table>
+<button>reset</button>

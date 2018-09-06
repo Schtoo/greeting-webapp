@@ -28,3 +28,11 @@
   color: rgb(0, 0, 0);
   font-weight: bold;
 }
+#btn {
+  color: #FFF;
+  background-color: #33C3F0;
+}
+.users {
+  color: #FFF;
+  background-color: #9A0E2A;
+}

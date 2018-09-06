@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="six columns">
-          <form action="/greetings" method="POST">
+          <form action="/greetings" method="post">
         <h2>Greetings</h2>
           Name <input class="insert" id="NameSearch" type='text' name="names" value="" placeholder="enter name"
           onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
@@ -41,23 +41,27 @@
         </div>
         <div class="row">
         <div class="six columns" id="checker"></div>
-          Counter: <span id="count">{{greeter.count}}</span>
+          Counter: <span id="count">{{greeter.counta}}</span>
         </div>
         </div>
         <hr>
 
-       <div class="twelve columns">
+       <div class="three columns">
         <button id="btn" type="submit" name="">Greet</button>
     </div>
       </form>
         
         <div class="row">
-            <div class="six columns">
-              <form action="/reset" method="POST">
+            <div class="three columns">
+              <form action="clear" method="post">
                 <button class="reset" type="submit" name="bttn">Reset</button>
                 </form>
             </div>
+            <form action="greeted" method="post">
+              <div class="three columnms">
+                <button class='users' type="submit" name="btn">users</button>
+              </div>
+              </form>
         </div>
       </div>
-      </form>
     </div>
