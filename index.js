@@ -50,7 +50,7 @@ app.use(session({
 
 app.get('/', async function (req, res) {
     let greeter = {
-        counta: await greetingsInstance.counter(),
+        counta: await greetingsInstance.counter()
     }
     res.render('home',{
         greeter
@@ -77,7 +77,7 @@ app.post('/greetings', async function (req, res) {
     });
 });
 
-app.post('/clear', async function (req, res){
+app.post('/reset', async function (req, res){
     let resetBtn = await greetingsInstance.resetBttn();
     res.redirect('/');
 });
@@ -92,6 +92,10 @@ app.post('/greeted', async function (req, res) {
 app.post('/', async function (req, res){
     res.redirect('/', {
     });
+});
+app.post('/clear', async function (req, res){
+    let reset = await pool.query('DELETE FROM users');
+    res.render('users');
 });
 
 let PORT = process.env.PORT || 3010;
