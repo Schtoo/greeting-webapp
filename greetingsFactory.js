@@ -9,7 +9,6 @@ module.exports = function (pool) {
           await pool.query('INSERT into users (names, count) values ($1, 0)', [Name]);
         }
         await pool.query('update users set count=count+1 where names=$1', [Name]);
-        // await pool.query('INSERT into users (name, count) values ($1, 0)', [name]);
 
         if (lang === "English") {
           return "Hello " + Name;
