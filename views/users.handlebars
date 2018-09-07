@@ -1,17 +1,31 @@
-<h2>Greeted Users</h2>
-  <form action="/" method="get">
-    <button>home</button>
- </form>
-<table>
-    <tr>
-        <th>Names greeted</th>
-        <th>Times greeted</th>
-    </tr
-    {{#each users}}>
-    <tr>
-        <td>{{names}}</td>
-        <td>{{count}}</td>
-    </tr>
-    {{/each}}
-</table>
-<button>reset</button>
+<h2>
+    Greeted Users</h2>
+<div class='userSide'>
+    <form action="/" method="get">
+        <div class="row">
+            <div class="six columns">
+                <button class="homeBtn">home</button>
+            </div>
+        </form>
+         <div class="six columns">
+             <form action="/clear" method="post">
+               <button class="route" type="submit">reset</button>
+            </form>
+        <p class="paraColor">reset will erase everything</p>
+    </div>
+    <div class="row">
+    <div class="twelve columns">
+    <table>
+        <tr>
+            <th>Names greeted</th>
+            <th>Times greeted</th>
+        </tr {{#each users}}>
+        <tr>
+            <td>{{names}}</td>
+            <td>{{count}}</td>
+        </tr>
+        {{/each}}
+    </table>
+    </div>
+    </div>
+</div>

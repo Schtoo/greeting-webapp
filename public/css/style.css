@@ -22,7 +22,7 @@
 }
 .reset {
   color: #FFF;
-  background-color: #33C3F0;
+  background-color: #9A0E2A;
 }
 #screenPrint {
   color: rgb(0, 0, 0);
@@ -34,5 +34,26 @@
 }
 .users {
   color: #FFF;
+  background-color: #33C3F0;
+}
+.homeBtn {
+  color: #FFF;
+  background-color: #33C3F0;
+}
+.route {
+  color: #FFF;
   background-color: #9A0E2A;
 }
+.paraColor {
+  color: red;
+  font-weight: bold;
+}
+.userSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h2 {
+  text-align: center;
+}
+

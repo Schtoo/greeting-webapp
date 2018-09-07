@@ -1,3 +1,14 @@
+const assert = require('assert');
+const CategoryService = require('../services/category-service');
+const pg = require("pg");
+const Pool = pg.Pool;
+
+const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/greeted_users';
+
+const pool = new Pool({
+    connectionString
+});
+
 describe("greet function", function() {
   it('counter should not increment if no name is inserted', function() {
     var counta = GreetFactory();
