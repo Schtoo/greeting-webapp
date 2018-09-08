@@ -29,11 +29,12 @@ module.exports = function (pool) {
       let resetCounta = await pool.query('DELETE FROM users');
       lang = "";
       Name = '';
+      return resetCounta.rowCount;
     }
     async function user () {
       let greetedUser = await pool.query('SELECT * FROM users ORDER BY count DESC');
      // console.log(greetedUser);
-      return greetedUser.rows;
+      return greetedUser.rows[0].count;
     }
 
   return {

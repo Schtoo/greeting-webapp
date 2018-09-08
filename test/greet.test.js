@@ -1,33 +1,52 @@
 const assert = require('assert');
-const CategoryService = require('../services/category-service');
+const greet = require('../greetingsFactory');
 const pg = require("pg");
 const Pool = pg.Pool;
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/greeted_users';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/greeted_users';
 
 const pool = new Pool({
     connectionString
 });
+describe("greet function", async function() {
+  beforeEach (async function(){
+    await pool.query('delete from users');
+  });
 
-describe("greet function", function() {
-  it('counter should not increment if no name is inserted', function() {
-    var counta = GreetFactory();
-    counta.counter();
-    assert.equal(counta.counter("0"), 0);
-  })
-  it('should greet a person in xhosa', function() {
-    var englishLang = GreetFactory();
-    englishLang.greeting('Molo, Gregg')
-    assert.equal(englishLang.greeting("Gregg, IsiXhosa"), 'Molo, Gregg')
-  })
-  it('should give you a greeting in english', function() {
-    var xhosaLang = GreetFactory();
-    xhosaLang.greeting("Hello, Vusi")
-    assert.equal(xhosaLang.greeting("Vusi, English"), 'Hello, Vusi')
-  })
-  it('should greet you in afrikaans', function() {
-    var afrikaansLang = GreetFactory();
-    afrikaansLang.greeting("Hallo, Mike")
-    assert.equal(afrikaansLang.greeting("Mike, Afrikaans"), 'Hallo, Mike')
-  })
+  it('should give you how many people are greeted', async function() {
+    let englishLang = greet(pool);
+    let english = await englishLang.greeting('Molo', 'Gregg');
+    await englishLang.greeting('Hello', 'Gregg');
+    await englishLang.greeting('Hello', 'Schtoo');
+
+    let counting = await englishLang.counter();
+    assert.equal(2, counting);
+  });
+
+  it('should give you how many times each person is greeted', async function() {
+    let xhosaLang = greet(pool);
+    let lang = await xhosaLang.greeting("Vusi", "Molo");
+        lang = await xhosaLang.greeting('Vusi', 'Molo');
+        lang = await xhosaLang.greeting('Vusi', 'Molo');
+        lang = await xhosaLang.greeting('Mike', 'Hello');
+        lang = await xhosaLang.greeting('Mike', 'Hello');
+
+    let greetedPeople = await xhosaLang.user('Vusi');
+    assert.equal(3, greetedPeople);
+  });
+  it('should greet you in afrikaans', async function() {
+    let afrikaansLang = greet(pool);
+    let afriLang = await afrikaansLang.greeting("Mike", "Molo");
+        afriLang = await afrikaansLang.greeting('Mike', 'Molo');
+        afriLang = await afrikaansLang.greeting('Mike', 'Hello');
+        afriLang = await afrikaansLang.greeting('Mike', 'Hello');
+
+        let greetedTimes = await afrikaansLang.user('Mike');
+        assert.equal(4, greetedTimes);
+  });
+  it('should erase the entire database', async function(){
+    let resetDb = greet(pool);
+    let dbReset = await resetDb.resetBttn();
+    assert.equal(0, dbReset);
+  });
 });
