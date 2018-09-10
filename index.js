@@ -93,12 +93,13 @@ app.post('/', async function (req, res){
     res.redirect('/', {
     });
 });
+
 app.post('/clear', async function (req, res){
     let reset = await pool.query('DELETE FROM users');
     res.render('users');
 });
 
-let PORT = process.env.PORT || 3011;
+let PORT = process.env.PORT || 3010;
 
 app.listen(PORT, function () {
     console.log('App successfully starting on port', PORT);

@@ -33,10 +33,10 @@ module.exports = function (pool) {
     }
     async function user () {
       let greetedUser = await pool.query('SELECT * FROM users ORDER BY count DESC');
-     // console.log(greetedUser);
-      return greetedUser.rows[0].count;
+      //console.log(greetedUser);
+      return greetedUser.rows;
     }
-
+    
   return {
     greeting,
     counter,
