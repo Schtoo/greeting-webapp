@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node index.js"
   },
   "keywords": [],
@@ -19,7 +19,7 @@
     "pg-pool": "^2.0.3"
   },
   "directories": {
-    "test": "tests"
+    "test": "test"
   },
   "devDependencies": {},
   "repository": {
@@ -30,5 +30,5 @@
     "url": "https://github.com/Schtoo/greeting-webapp/issues"
   },
   "homepage": "https://github.com/Schtoo/greeting-webapp#readme",
-  "description": ""
+  "description": "[![Build Status](https://travis-ci.org/Schtoo/greeting-webapp.svg?branch=master)](https://travis-ci.org/Schtoo/greeting-webapp)"
 }
