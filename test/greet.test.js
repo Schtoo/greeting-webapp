@@ -15,38 +15,51 @@ describe("greet function", async function() {
 
   it('should give you how many people are greeted', async function() {
     let englishLang = greet(pool);
-    let english = await englishLang.greeting('Molo', 'Gregg');
-    await englishLang.greeting('Hello', 'Gregg');
-    await englishLang.greeting('Hello', 'Schtoo');
+    let english = await englishLang.greeting('Gregg', 'Molo');
+    await englishLang.greeting('Gregg', 'Hello');
+    await englishLang.greeting('Schtoo', 'Hello');
 
     let counting = await englishLang.counter();
     assert.equal(2, counting);
   });
 
+  it('should give you a greeting in english', async function(){
+    let english = greet(pool);
+    let greetEnglish = await english.greeting('Schtoo', 'English');
+    assert.equal(greetEnglish, 'Hello Schtoo');
+  });
+
+  it('should greet you in Afrikaans', async function(){
+    let afrikaans = greet(pool);
+    let greetAfrikaans = await afrikaans.greeting('Schtoo', 'Afrikaans');
+    assert.equal(greetAfrikaans, 'Hallo Schtoo');
+  });
+
+  it('should give a greeting in Xhosa', async function(){
+    let xhosas = greet(pool);
+    let greetXhosa = await xhosas.greeting('Mike', 'isiXhosa');
+    assert.equal(greetXhosa, 'Molo Mike');
+  });
+
   it('should give you how many times each person is greeted', async function() {
     let xhosaLang = greet(pool);
-    let lang = await xhosaLang.greeting("Vusi", "Molo");
-        lang = await xhosaLang.greeting('Vusi', 'Molo');
-        lang = await xhosaLang.greeting('Vusi', 'Molo');
-        lang = await xhosaLang.greeting('Mike', 'Hello');
-        lang = await xhosaLang.greeting('Mike', 'Hello');
-
-    let greetedPeople = await xhosaLang.user('Vusi');
-    assert.equal(3, greetedPeople);
+    
+    await xhosaLang.greeting("Vusi", "Molo");
+    await xhosaLang.greeting('Vusi', 'Molo');
+    await xhosaLang.greeting('Mike', 'Hello');
+    await xhosaLang.greeting('Mike', 'Hello');
+    
+    let greetedPeople = await xhosaLang.eachPerson('Vusi');
+    assert.equal(2, greetedPeople);
   });
-  it('should greet you in afrikaans', async function() {
-    let afrikaansLang = greet(pool);
-    let afriLang = await afrikaansLang.greeting("Mike", "Molo");
-        afriLang = await afrikaansLang.greeting('Mike', 'Molo');
-        afriLang = await afrikaansLang.greeting('Mike', 'Hello');
-        afriLang = await afrikaansLang.greeting('Mike', 'Hello');
 
-        let greetedTimes = await afrikaansLang.user('Mike');
-        assert.equal(4, greetedTimes);
-  });
   it('should erase the entire database', async function(){
     let resetDb = greet(pool);
     let dbReset = await resetDb.resetBttn();
     assert.equal(0, dbReset);
+  });
+
+  after(function(){
+    pool.end();
   });
 });
