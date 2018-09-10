@@ -89,7 +89,7 @@ app.post('/greeted', async function (req, res) {
     });
 });
 
-app.post('/', async function (req, res){
+app.post('/', function (req, res){
     res.redirect('/', {
     });
 });
