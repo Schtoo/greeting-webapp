@@ -42,15 +42,17 @@ describe("greet function", async function() {
   });
 
   it('should give you how many times each person is greeted', async function() {
-    let xhosaLang = greet(pool);
+    let howManyTimes = greet(pool);
     
-    await xhosaLang.greeting("Vusi", "Molo");
-    await xhosaLang.greeting('Vusi', 'Molo');
-    await xhosaLang.greeting('Mike', 'Hello');
-    await xhosaLang.greeting('Mike', 'Hello');
+    await howManyTimes.greeting("Vusi", "IsiXhosa");
+    await howManyTimes.greeting('Vusi', 'IsiXhosa');
+    await howManyTimes.greeting('Vusi', 'IsiXhosa');
+    await howManyTimes.greeting('Mike', 'English');
+    await howManyTimes.greeting('Mike', 'English');
     
-    let greetedPeople = await xhosaLang.eachPerson('Vusi');
-    assert.equal(2, greetedPeople);
+    let user = await howManyTimes.eachPerson('Vusi');
+    //console.log(user);
+    assert.equal(3, user);
   });
 
   it('should erase the entire database', async function(){

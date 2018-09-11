@@ -31,16 +31,18 @@ module.exports = function (pool) {
       Name = '';
       return resetCounta.rowCount;
     }
+
     async function user () {
       let greetedUser = await pool.query('SELECT * FROM users ORDER BY count DESC');
       return greetedUser.rows;
     }
 
-    async function eachPerson () {
-      let user = await pool.query('SELECT * FROM users ORDER BY count');
-      return user.rows[0].count;
+    async function eachPerson (name) {
+      let userCount = await pool.query('SELECT count FROM users WHERE names =$1',[name]);
+     // console.log(userCount);
+      return userCount.rows[0].count;
     }
-    
+
   return {
     greeting,
     counter,
