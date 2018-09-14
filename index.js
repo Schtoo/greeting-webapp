@@ -99,7 +99,18 @@ app.post('/clear', async function (req, res){
     res.render('users');
 });
 
-let PORT = process.env.PORT || 3020;
+app.get('/counter/:schtoo', async function (req, res){
+
+    let {naming} = req.params;
+    let countUser = await greetingsInstance.eachUser(naming);
+    console.log(countUser);
+
+    res.render('greeted', {
+        countUser
+    });
+});
+
+let PORT = process.env.PORT || 3014;
 
 app.listen(PORT, function () {
     console.log('App successfully starting on port', PORT);

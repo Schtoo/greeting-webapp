@@ -6,26 +6,27 @@
             <div class="six columns">
                 <button class="homeBtn">home</button>
             </div>
+    </form>
+    <div class="six columns">
+        <form action="/clear" method="post">
+            <button class="route" type="submit">clear</button>
         </form>
-         <div class="six columns">
-             <form action="/clear" method="post">
-               <button class="route" type="submit">clear</button>
-            </form>
         <p class="paraColor">will erases all data</p>
     </div>
     <div class="row">
-    <div class="twelve columns">
-    <table>
-        <tr>
-            <th>Names greeted</th>
-            <th>Times greeted</th>
-        </tr {{#each users}}>
-        <tr>
-            <td>{{names}}</td>
-            <td>{{count}}</td>
-        </tr>
-        {{/each}}
-    </table>
-    </div>
+        <div class="twelve columns">
+            <table>
+                <tr>
+                    <th>Names greeted</th>
+                    <th>Times greeted</th>
+                </tr>
+                {{#each users}}
+                <tr>
+                    <td><a href="/counter">{{names}}</a></td>
+                    <td>{{count}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
     </div>
 </div>

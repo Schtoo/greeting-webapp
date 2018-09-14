@@ -51,7 +51,6 @@ describe("greet function", async function() {
     await howManyTimes.greeting('Mike', 'English');
     
     let user = await howManyTimes.eachPerson('Vusi');
-    //console.log(user);
     assert.equal(3, user);
   });
 

@@ -34,13 +34,14 @@ module.exports = function (pool) {
 
     async function user () {
       let greetedUser = await pool.query('SELECT * FROM users ORDER BY count DESC');
+     // console.log(greetedUser);
       return greetedUser.rows;
     }
 
-    async function eachPerson (name) {
-      let userCount = await pool.query('SELECT count FROM users WHERE names =$1',[name]);
+    async function eachUser (name) {
+      let userCount = await pool.query('SELECT * FROM users WHERE names =$1',[name]);
      // console.log(userCount);
-      return userCount.rows[0].count;
+      return userCount.rows[0];
     }
 
   return {
@@ -48,6 +49,6 @@ module.exports = function (pool) {
     counter,
     resetBttn,
     user,
-    eachPerson
+    eachUser
   }
 }
