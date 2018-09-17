@@ -34,13 +34,15 @@ module.exports = function (pool) {
 
     async function user () {
       let greetedUser = await pool.query('SELECT * FROM users ORDER BY count DESC');
-     // console.log(greetedUser);
+      //console.log(greetedUser);
       return greetedUser.rows;
     }
 
     async function eachUser (name) {
-      let userCount = await pool.query('SELECT * FROM users WHERE names =$1',[name]);
+      //console.log(name);
+      let userCount = await pool.query('SELECT * FROM users WHERE names=$1', [name]);
      // console.log(userCount);
+      
       return userCount.rows[0];
     }
 
