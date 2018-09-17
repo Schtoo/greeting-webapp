@@ -14,7 +14,7 @@ const Pool = pg.Pool;
 // should we use a SSL connection
 let useSSL = false;
 let local = process.env.LOCAL || false;
-if (process.env.DATABASE_URL && !local){
+if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 // which db connection to use
@@ -22,8 +22,8 @@ const connectionString = process.env.DATABASE_URL || 'postgres://coder:pg123@loc
 
 const pool = new Pool({
     connectionString,
-    ssl : useSSL
-  });
+    ssl: useSSL
+});
 
 // creating instance of factory function
 let greetingsInstance = greetings(pool);
@@ -41,18 +41,18 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(session({
-    secret : "<add a secret string here>",
+    secret: "<add a secret string here>",
     resave: false,
     saveUninitialized: true
-  }));
+}));
 
-  app.use(flash());
+app.use(flash());
 
 app.get('/', async function (req, res) {
     let greeter = {
         counta: await greetingsInstance.counter()
-    }
-    res.render('home',{
+    };
+    res.render('home', {
         greeter
     });
 });
@@ -65,52 +65,56 @@ app.post('/greetings', async function (req, res) {
         greet: await greetingsInstance.greeting(name, lang),
         counta: await greetingsInstance.counter()
     }
-    if (name === "" || name === undefined){
-        
-        req.flash('info',  'Please enter a name')
-    } else if (lang === undefined){
+    if (name === "" || name === undefined) {
+
+        req.flash('info', 'Please enter a name')
+    } else if (lang === undefined) {
         req.flash('info', 'Please select language')
-     }
-     
+    }
+
     res.render('home', {
         greeter
     });
 });
 
-app.post('/reset', async function (req, res){
+app.post('/reset', async function (req, res) {
     let resetBtn = await greetingsInstance.resetBttn();
     res.redirect('/');
 });
 
-app.post('/greeted', async function (req, res) {
+app.get('/greeted', async function (req, res) {
     let users = await greetingsInstance.user();
     res.render('users', {
         users
     });
 });
 
-app.post('/', function (req, res){
-    res.redirect('/', {
-    });
+app.get('/back', async function (req, res){
+    let user = await greetingsInstance.user();
+    res.render('users');
 });
 
-app.post('/clear', async function (req, res){
+app.post('/', function (req, res) {
+    res.redirect('/', {});
+});
+
+app.post('/clear', async function (req, res) {
     let reset = await pool.query('DELETE FROM users');
     res.render('users');
 });
 
-app.get('/counter/:schtoo', async function (req, res){
+app.get('/counter/:name', async function (req, res) {
 
-    let {naming} = req.params;
-    let countUser = await greetingsInstance.eachUser(naming);
-    console.log(countUser);
+    let {name} = req.params;
+    //console.log(name);
+    let countUser = await greetingsInstance.eachUser(name);
 
-    res.render('greeted', {
+    res.render('greet',
         countUser
-    });
+    );
 });
 
-let PORT = process.env.PORT || 3014;
+let PORT = process.env.PORT || 3015;
 
 app.listen(PORT, function () {
     console.log('App successfully starting on port', PORT);
