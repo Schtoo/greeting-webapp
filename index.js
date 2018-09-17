@@ -89,11 +89,6 @@ app.get('/greeted', async function (req, res) {
     });
 });
 
-app.get('/back', async function (req, res){
-    let user = await greetingsInstance.user();
-    res.render('users');
-});
-
 app.post('/', function (req, res) {
     res.redirect('/', {});
 });
