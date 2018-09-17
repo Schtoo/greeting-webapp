@@ -1,15 +1,14 @@
-
-  <div class="container">
-    <div class="row">
-      <div class="six columns">
-          <form action="/greetings" method="post">
+<div class="container">
+  <div class="row">
+    <div class="six columns">
+      <form action="/greetings" method="post">
         <h2>Greetings</h2>
-          Name <input class="insert" id="NameSearch" type='text' name="names" value="" placeholder="enter name"
+        Name <input class="insert" id="NameSearch" type='text' name="names" value="" placeholder="enter name"
           onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
-  </div>
-  <div class="twelve columns">
-          <div class="row">
-          <div class="three columns">
+    </div>
+    <div class="twelve columns">
+      <div class="row">
+        <div class="three columns">
           <label class="inline1">
             <input type="radio" name="language" value="English">
             <span class="eng">English</span><br>
@@ -28,41 +27,38 @@
           </label>
         </div>
       </div>
-      </div>
-        <div class="row">
-          <div class="twelve columns" id="screenPrint">
-            <p>{{greeter.greet}}</p>
-          </div>
-          {{#if messages.info}}
-        <div class="twelve columns" id="errors">
-            <p>{{messages.info}}</p>
-          </div>
-          {{/if}}
-        </div>
-        <div class="row">
-        <div class="six columns" id="checker"></div>
-          Counter: <span id="count"><strong>{{greeter.counta}}</strong></span>
-        </div>
-        </div>
-        <hr>
-
-       <div class="three columns">
-        <button id="btn" type="submit" name="">Greet</button>
     </div>
-      </form>
-        
-        <div class="row">
-
-          <form action="/greeted" method="post">
-              <div class="three columns">
-                <button class='users' type="submit" name="btn">users</button>
-              </div>
-              </form>
-            <div class="three columns">
-              <form action="/reset" method="post">
-                <button class="reset" type="submit" name="bttn">Reset</button>
-                </form>
-            </div>
-        </div>
+    <div class="row">
+      <div class="twelve columns" id="screenPrint">
+        <p>{{greeter.greet}}</p>
       </div>
+      {{#if messages.info}}
+      <div class="twelve columns" id="errors">
+        <p>{{messages.info}}</p>
+      </div>
+      {{/if}}
     </div>
+    <div class="row">
+      <div class="six columns" id="checker"></div>
+      Counter: <span id="count"><strong>{{greeter.counta}}</strong></span>
+    </div>
+  </div>
+  <hr>
+
+  <div class="three columns">
+    <button id="btn" type="submit" name="">Greet</button>
+  </div>
+  </form>
+    <div class="row">
+      <div class="three columns">
+        <a href="/greeted"><button class="back" type="button">Greeted users</button></a>
+      </div>
+  <div class="three columns">
+    <form action="/reset" method="post">
+      <button class="reset" type="submit" name="">Reset</button>
+    </form>
+
+  </div>
+</div>
+</div>
+</div>

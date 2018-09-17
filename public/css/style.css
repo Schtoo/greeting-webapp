@@ -1,7 +1,7 @@
 .box {
   padding: 0.75em;
-  border-radius : 0.5em;
-  border : 1px solid #ddd;
+  border-radius: 0.5em;
+  border: 1px solid #ddd;
   height: auto;
   margin-bottom: 1em;
 }
@@ -20,40 +20,62 @@
   font-weight: bold;
   font-size: 2em;
 }
+
 .reset {
   color: #FFF;
   background-color: #9A0E2A;
 }
+
 #screenPrint {
   color: rgb(0, 0, 0);
   font-weight: bold;
 }
+
 #btn {
   color: #FFF;
   background-color: #33C3F0;
 }
+
 .users {
   color: #FFF;
   background-color: #33C3F0;
 }
+
 .homeBtn {
   color: #FFF;
   background-color: #33C3F0;
 }
+
 .route {
   color: #FFF;
   background-color: #9A0E2A;
 }
+
 .paraColor {
   color: red;
   font-weight: bold;
 }
+
 .userSide {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-h2 {
+
+h1,
+h2,
+h3 {
   text-align: center;
+  color: #9A0E2A;
+  font-weight: bold;
 }
 
+.container-2 {
+  text-align: center;
+  margin-top: 5em;
+}
+
+.back {
+  color: #FFF;
+  background-color: #33C3F0;
+}

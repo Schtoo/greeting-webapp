@@ -109,7 +109,7 @@ app.get('/counter/:name', async function (req, res) {
     );
 });
 
-let PORT = process.env.PORT || 3015;
+let PORT = process.env.PORT || 3011;
 
 app.listen(PORT, function () {
     console.log('App successfully starting on port', PORT);
