@@ -50,8 +50,9 @@ describe("greet function", async function() {
     await howManyTimes.greeting('Mike', 'English');
     await howManyTimes.greeting('Mike', 'English');
     
-    let user = await howManyTimes.eachPerson('Vusi');
-    assert.equal(3, user);
+    let user = await howManyTimes.eachUser('Vusi');
+   // console.log(user);
+    assert.equal(3, user.count);
   });
 
   it('should erase the entire database', async function(){
