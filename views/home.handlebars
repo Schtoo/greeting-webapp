@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="six columns">
+    <div class="twelve columns">
       <form action="/greetings" method="post">
         <h2>Greetings</h2>
         Name <input class="insert" id="NameSearch" type='text' name="names" value="" placeholder="enter name"
           onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
-    </div>
+    
+      Counter: <span id="count"><strong>{{greeter.counta}}</strong></span>
+      </div>
     <div class="twelve columns">
       <div class="row">
         <div class="three columns">
@@ -37,10 +39,6 @@
         <p>{{messages.info}}</p>
       </div>
       {{/if}}
-    </div>
-    <div class="row">
-      <div class="six columns" id="checker"></div>
-      Counter: <span id="count"><strong>{{greeter.counta}}</strong></span>
     </div>
   </div>
   <hr>
