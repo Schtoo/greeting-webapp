@@ -66,7 +66,6 @@ app.post('/greetings', async function (req, res) {
         counta: await greetingsInstance.counter()
     }
     if (name === "" || name === undefined) {
-
         req.flash('info', 'Please enter a name')
     } else if (lang === undefined) {
         req.flash('info', 'Please select language')
@@ -99,7 +98,6 @@ app.post('/clear', async function (req, res) {
 });
 
 app.get('/counter/:name', async function (req, res) {
-
     let {name} = req.params;
     //console.log(name);
     let countUser = await greetingsInstance.eachUser(name);
@@ -109,7 +107,7 @@ app.get('/counter/:name', async function (req, res) {
     );
 });
 
-let PORT = process.env.PORT || 3011;
+let PORT = process.env.PORT || 3015;
 
 app.listen(PORT, function () {
     console.log('App successfully starting on port', PORT);

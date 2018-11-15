@@ -8,6 +8,7 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@l
 const pool = new Pool({
     connectionString
 });
+
 describe("greet function", async function() {
   beforeEach (async function(){
     await pool.query('delete from users');

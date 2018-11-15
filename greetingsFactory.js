@@ -1,10 +1,9 @@
 module.exports = function (pool) {
   async function greeting(Name, lang) {
       if (Name !== '' && lang !== undefined) {
-        Name = Name.charAt(0).toUpperCase() + Name.slice(1).toLowerCase()
-
+        Name = Name.charAt(0).toUpperCase() + Name.slice(1).toLowerCase();
         let result = await pool.query('select id from users where names=$1', [Name]);
-       // console.log(result);
+
         if (result.rowCount === 0) {
           await pool.query('INSERT into users (names, count) values ($1, 0)', [Name]);
         }
@@ -39,10 +38,7 @@ module.exports = function (pool) {
     }
 
     async function eachUser (name) {
-      //console.log(name);
       let userCount = await pool.query('SELECT * FROM users WHERE names=$1', [name]);
-     // console.log(userCount);
-      
       return userCount.rows[0];
     }
 
